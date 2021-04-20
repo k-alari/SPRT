@@ -215,9 +215,9 @@ shinyServer(function(input, output) {
         r0 = input$r0
         r1 = input$r1
         
-        risklevel = function(r0, r1){
+        risklevel = function(r0, r1, sigma){
           mu.grid= seq(0, 10, 0.0001) ## grid for mu values
-          p = pnorm(7, mu.grid, 1.5) ## take pnorm( 7, mu.grid, sigma=1.5 )
+          p = pnorm(7, mu.grid, sigma) ## take pnorm( 7, mu.grid, sigma=1.5 )
           mu0 = mu.grid[which.min(abs(p-(1-r0)))]  ## For null risk level (Prob of exceeding 7) of inputted 'r0'
           mu1 = mu.grid[which.min(abs(p-(1-r1)))]  ## For alt risk level (Prob of exceeding 7) of inputted 'r1'
           
@@ -226,7 +226,7 @@ shinyServer(function(input, output) {
           out
         }
         
-        risk = risklevel(r0, r1)
+        risk = risklevel(r0, r1, sigma)
         mu0 = risk$mu0
         mu1 = risk$mu1
       }
@@ -253,9 +253,9 @@ shinyServer(function(input, output) {
         r0 = input$r0
         r1 = input$r1
         
-        risklevel = function(r0, r1){
+        risklevel = function(r0, r1, sigma){
           mu.grid= seq(0, 10, 0.0001) ## grid for mu values
-          p = pnorm(7, mu.grid, 1.5) ## take pnorm( 7, mu.grid, sigma=1.5 )
+          p = pnorm(7, mu.grid, sigma) ## take pnorm( 7, mu.grid, sigma=1.5 )
           mu0 = mu.grid[which.min(abs(p-(1-r0)))]  ## For null risk level (Prob of exceeding 7) of inputted 'r0'
           mu1 = mu.grid[which.min(abs(p-(1-r1)))]  ## For alt risk level (Prob of exceeding 7) of inputted 'r1'
           
@@ -264,7 +264,7 @@ shinyServer(function(input, output) {
           out
         }
         
-        risk = risklevel(r0, r1)
+        risk = risklevel(r0, r1, sigma)
         mu0 = risk$mu0
         mu1 = risk$mu1
       }
@@ -335,9 +335,9 @@ shinyServer(function(input, output) {
           r1 = input$r1
           
           
-          risklevel = function(r0, r1){
+          risklevel = function(r0, r1, sigma){
             mu.grid= seq(0, 10, 0.0001) ## grid for mu values
-            p = pnorm(7, mu.grid, 1.5) ## take pnorm( 7, mu.grid, sigma=1.5 )
+            p = pnorm(7, mu.grid, sigma) ## take pnorm( 7, mu.grid, sigma=1.5 )
             mu0 = mu.grid[which.min(abs(p-(1-r0)))]  ## For null risk level (Prob of exceeding 7) of inputted 'r0'
             mu1 = mu.grid[which.min(abs(p-(1-r1)))]  ## For alt risk level (Prob of exceeding 7) of inputted 'r1'
             
@@ -346,7 +346,7 @@ shinyServer(function(input, output) {
             out
           }
           
-          risk = risklevel(r0, r1)
+          risk = risklevel(r0, r1, sigma)
           
           conclusion = sprt.func(alpha=alpha, beta=beta, mu0=risk$mu0, mu1=risk$mu1, sigma=sigma, data=data)
         }

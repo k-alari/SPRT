@@ -85,7 +85,8 @@ shinyUI(fluidPage(
             br(), ## adds some space between outputs
             plotOutput("distributions", height=250), ## Null/Alt Distributions plot
             htmlOutput("headingtext"),  ## For text output
-            htmlOutput("sprtRslt") ## For text output
+            htmlOutput("sprtRslt"), ## For text output
+            br()
         )
     )
 ))
